@@ -1,0 +1,20 @@
+PODS:
+  - CYFCollectionViewCalendarLayout (0.1.0)
+  - Expecta (0.3.2)
+  - Specta (0.4.0)
+
+DEPENDENCIES:
+  - CYFCollectionViewCalendarLayout (from `../`)
+  - Expecta
+  - Specta
+
+EXTERNAL SOURCES:
+  CYFCollectionViewCalendarLayout:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CYFCollectionViewCalendarLayout: d7f4df62e1dbdc3e9aac9660994b1cbfcd849e54
+  Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
+  Specta: 1df326d6ec48603c77f507a0ab1f89ad2df1c582
+
+COCOAPODS: 0.35.0
