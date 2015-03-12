@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.version          = "0.1.0"
   s.summary          = "A UICollectionView layout for events in a day."
   s.description      = <<-DESC
-                       A UICollectionView layout for events in a day.
+                       A UICollectionView layout for events in a day. Support dragging and resizing of event block.
                        DESC
   s.homepage         = "https://github.com/yifeic/CYFCollectionViewCalendarLayout"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
