@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'CYFCollectionViewCalendarLayout', :exclusive => true do
+  pod "CYFCollectionViewCalendarLayout", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "CYFCollectionViewCalendarLayout", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
