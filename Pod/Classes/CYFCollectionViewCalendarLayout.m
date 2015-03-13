@@ -83,11 +83,12 @@
             
             CGRect itemFrame = [(id<CYFCollectionViewDelegateCalendarLayout>)self.collectionView.delegate collectionView:self.collectionView frameForEventAtIndexPath:indexPath];
             CGFloat collectionViewWidth = self.collectionView.bounds.size.width;
-            itemFrame = CGRectMake(timeScaleLineInsects.left, itemFrame.origin.y, collectionViewWidth, itemFrame.size.height);
+            itemFrame = CGRectMake(timeScaleLineInsects.left, itemFrame.origin.y, collectionViewWidth-timeScaleLineInsects.left, itemFrame.size.height);
             
             
             UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-            attr.frame = itemFrame;
+
+            attr.frame = UIEdgeInsetsInsetRect(itemFrame, self.eventCellInsects);
             [self.indexPathToAttributes setObject:attr forKey:indexPath];
         }
     }
