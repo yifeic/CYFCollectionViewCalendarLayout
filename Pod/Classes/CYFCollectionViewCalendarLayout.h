@@ -23,7 +23,8 @@
 - (NSIndexPath *)indexPathOfClosestTimeSlotToPoint:(CGPoint)point;
 - (CGRect)frameOfTimeSlotAtIndexPath:(NSIndexPath *)indexPath;
 
-@property (nonatomic) UIEdgeInsets timeScaleLineInsects;
+@property (nonatomic) UIEdgeInsets timeScaleLineInsets;
+@property (nonatomic) UIEdgeInsets eventCellInsets;
 @property (nonatomic) CGPoint timeScaleLabelOffset;
 @property (nonatomic) CGFloat timeScaleLineVerticalSpacing;
 @property (nonatomic) NSInteger numberOfTimeSlotsBetweenTimeScales;

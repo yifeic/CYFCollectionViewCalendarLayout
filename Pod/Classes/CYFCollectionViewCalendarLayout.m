@@ -32,7 +32,7 @@
         timeScales = [(id<CYFCollectionViewDelegateCalendarLayout>)self.collectionView.delegate timeScalesInCollectionView:self.collectionView];
     }
     
-    UIEdgeInsets timeScaleLineInsects = self.timeScaleLineInsects;
+    UIEdgeInsets timeScaleLineInsets = self.timeScaleLineInsets;
     
     CGPoint timeScaleLabelOffset = self.timeScaleLabelOffset;
     
@@ -42,12 +42,12 @@
     
     CGFloat timeScaleLineWidth = self.timeScaleLineWidth;
     
-    CGFloat contentHeight = timeScales.count * (timeScaleLineVerticalSpacing+timeScaleLineWidth) - timeScaleLineVerticalSpacing - timeScaleLineWidth + timeScaleLineInsects.top + timeScaleLineInsects.bottom;
+    CGFloat contentHeight = timeScales.count * (timeScaleLineVerticalSpacing+timeScaleLineWidth) - timeScaleLineVerticalSpacing - timeScaleLineWidth + timeScaleLineInsets.top + timeScaleLineInsets.bottom;
     self.contentSize = CGSizeMake(0, contentHeight);
     
     CGFloat collectionViewWidth = self.collectionView.bounds.size.width;
     
-    CGFloat timeScaleLineY = timeScaleLineInsects.top;
+    CGFloat timeScaleLineY = timeScaleLineInsets.top;
     
     NSMutableArray *timeScaleLineLayoutAttributes = [NSMutableArray arrayWithCapacity:timeScales.count];
     NSMutableArray *timeScaleLabelLayoutAttributes = [NSMutableArray arrayWithCapacity:timeScales.count];
@@ -55,11 +55,11 @@
     for (int i = 0; i < timeScales.count; i++) {
         
         UICollectionViewLayoutAttributes *timeScaleLineAttr = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:[CYFCalendarTimeScaleLineView kind] withIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        timeScaleLineAttr.frame = CGRectMake(timeScaleLineInsects.left, timeScaleLineY, collectionViewWidth-timeScaleLineInsects.left, timeScaleLineWidth);
+        timeScaleLineAttr.frame = CGRectMake(timeScaleLineInsets.left, timeScaleLineY, collectionViewWidth-timeScaleLineInsets.left, timeScaleLineWidth);
         [timeScaleLineLayoutAttributes addObject:timeScaleLineAttr];
         
         UICollectionViewLayoutAttributes *timeScaleLabelAttr = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:[CYFCalendarTimeScaleLabelView kind] withIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        timeScaleLabelAttr.frame = CGRectMake(timeScaleLabelOffset.x, timeScaleLineY+timeScaleLabelOffset.y, timeScaleLineInsects.left, 30);
+        timeScaleLabelAttr.frame = CGRectMake(timeScaleLabelOffset.x, timeScaleLineY+timeScaleLabelOffset.y, timeScaleLineInsets.left, 30);
         [timeScaleLabelLayoutAttributes addObject:timeScaleLabelAttr];
         
         timeScaleLineY += timeScaleLineVerticalSpacing+timeScaleLineWidth;
@@ -83,12 +83,12 @@
             
             CGRect itemFrame = [(id<CYFCollectionViewDelegateCalendarLayout>)self.collectionView.delegate collectionView:self.collectionView frameForEventAtIndexPath:indexPath];
             CGFloat collectionViewWidth = self.collectionView.bounds.size.width;
-            itemFrame = CGRectMake(timeScaleLineInsects.left, itemFrame.origin.y, collectionViewWidth-timeScaleLineInsects.left, itemFrame.size.height);
+            itemFrame = CGRectMake(timeScaleLineInsets.left, itemFrame.origin.y, collectionViewWidth-timeScaleLineInsets.left, itemFrame.size.height);
             
             
             UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
 
-            attr.frame = UIEdgeInsetsInsetRect(itemFrame, self.eventCellInsects);
+            attr.frame = UIEdgeInsetsInsetRect(itemFrame, self.eventCellInsets);
             [self.indexPathToAttributes setObject:attr forKey:indexPath];
         }
     }
@@ -153,7 +153,7 @@
 - (NSIndexPath *)indexPathOfClosestTimeSlotToPoint:(CGPoint)point {
     
     CGFloat y = point.y;
-    y -= self.timeScaleLineInsects.top;
+    y -= self.timeScaleLineInsets.top;
     y = MAX(y, 0);
     
     NSUInteger indexOfTimeScale = y / (self.timeScaleLineVerticalSpacing+self.timeScaleLineWidth);
