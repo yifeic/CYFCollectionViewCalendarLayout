@@ -87,7 +87,7 @@
             
             
             UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-
+            attr.zIndex = 2;
             attr.frame = UIEdgeInsetsInsetRect(itemFrame, self.eventCellInsets);
             [self.indexPathToAttributes setObject:attr forKey:indexPath];
         }
