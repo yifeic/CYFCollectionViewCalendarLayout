@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL decelerating;
 
 @property (nonatomic) BOOL resizing;
+@property (nonatomic) CGFloat resizeMinHeight;
 
 @end
 
@@ -73,7 +74,7 @@
             }
             
             if (shouldResize) {
-                CGFloat resizeAreaHeight = 20;
+                CGFloat resizeAreaHeight = 30;
                 if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:resizeAreaHeightOfDraggableView:)]) {
                     resizeAreaHeight = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView resizeAreaHeightOfDraggableView:self.selectedView];
                 }
@@ -82,6 +83,8 @@
                 if (del < resizeAreaHeight) {
                     self.resizing = YES;
                     self.selectedViewOriginalHeight = self.selectedView.bounds.size.height;
+                    
+                    self.resizeMinHeight = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView resizeMinHeightOfDraggableView:self.selectedView];
                     break;
                 }
             }
@@ -95,7 +98,7 @@
             if (self.resizing) {
                 
                 CGFloat height = self.selectedViewOriginalHeight + translation.y;
-                height = MAX(20, height);
+                height = MAX(self.resizeMinHeight, height);
                 self.selectedView.frame = CGRectMake(self.selectedView.frame.origin.x, self.selectedView.frame.origin.y, self.selectedView.frame.size.width, height);
                 [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView draggableViewDidResize:self.selectedView];
             }

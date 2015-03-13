@@ -25,6 +25,8 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldResizeDraggableView:(UIView *)draggableView;
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView resizeMinHeightOfDraggableView:(UIView *)draggableView;
+
 @optional
 - (CGFloat)collectionView:(UICollectionView *)collectionView resizeAreaHeightOfDraggableView:(UIView *)draggableView;
 
