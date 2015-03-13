@@ -118,10 +118,14 @@
                 [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView draggableViewWillEndResizing:self.selectedView targetYPosition:&targetYPosition cancel:&cancel];
                 
                 if (cancel) {
+                    targetYPosition = self.selectedView.frame.origin.y + self.selectedViewOriginalHeight;
+                }
+                
+                if (targetYPosition > self.selectedView.frame.origin.y) {
                     self.decelerating = YES;
                     
                     [UIView animateWithDuration:0.15 animations:^{
-                        self.selectedView.frame = CGRectMake(self.selectedView.frame.origin.x, self.selectedView.frame.origin.y, self.selectedView.frame.size.width, self.selectedViewOriginalHeight);
+                        self.selectedView.frame = CGRectMake(self.selectedView.frame.origin.x, self.selectedView.frame.origin.y, self.selectedView.frame.size.width, targetYPosition - self.selectedView.frame.origin.y);
                     } completion:^(BOOL finished) {
                         self.decelerating = NO;
                         [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView draggableViewDidEndDeceleratingForResizing:self.selectedView];
