@@ -150,6 +150,10 @@
     return result;
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.indexPathToAttributes[indexPath];
+}
+
 - (NSIndexPath *)indexPathOfClosestTimeSlotToPoint:(CGPoint)point {
     
     CGFloat y = point.y;
