@@ -121,20 +121,20 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
                 
                 self.selectedView.center = CGPointMake(self.selectedViewOriginalCenter.x, self.selectedViewOriginalCenter.y+translation.y);
                 [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView draggableViewDidMove:self.selectedView];
-            }
-            
-            
-            if (self.selectedView.center.y < (CGRectGetMinY(self.collectionView.bounds) + self.autoScrollEdgeHeight)) {
-                self.autoScrollSpeed = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate autoScrollSpeedInCollectionView:self.collectionView];
-                [self setupScrollTimerInDirection:_ScrollingDirectionUp];
-            }
-            else {
-                if (self.selectedView.center.y > (CGRectGetMaxY(self.collectionView.bounds) - self.autoScrollEdgeHeight)) {
+                
+                //check if edge auto scrolling should begin
+                if (self.selectedView.center.y < (CGRectGetMinY(self.collectionView.bounds) + self.autoScrollEdgeHeight)) {
                     self.autoScrollSpeed = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate autoScrollSpeedInCollectionView:self.collectionView];
-                    [self setupScrollTimerInDirection:_ScrollingDirectionDown];
+                    [self setupScrollTimerInDirection:_ScrollingDirectionUp];
                 }
                 else {
-                    [self invalidatesScrollTimer];
+                    if (self.selectedView.center.y > (CGRectGetMaxY(self.collectionView.bounds) - self.autoScrollEdgeHeight)) {
+                        self.autoScrollSpeed = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate autoScrollSpeedInCollectionView:self.collectionView];
+                        [self setupScrollTimerInDirection:_ScrollingDirectionDown];
+                    }
+                    else {
+                        [self invalidatesScrollTimer];
+                    }
                 }
             }
             
