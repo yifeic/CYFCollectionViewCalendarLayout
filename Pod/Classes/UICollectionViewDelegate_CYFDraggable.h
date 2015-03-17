@@ -27,6 +27,9 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView resizeMinHeightOfDraggableView:(UIView *)draggableView;
 
+- (CGFloat)autoScrollEdgeHeightInCollectionView:(UICollectionView *)collectionView;
+- (CGFloat)autoScrollSpeedInCollectionView:(UICollectionView *)collectionView;
+
 @optional
 - (CGFloat)collectionView:(UICollectionView *)collectionView resizeAreaHeightOfDraggableView:(UIView *)draggableView;
 
