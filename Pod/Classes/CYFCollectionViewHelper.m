@@ -123,9 +123,12 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
             else {
                 
                 CGFloat newPositionY = self.selectedViewOriginalCenter.y+translation.y;
-                if (newPositionY+CGRectGetHeight(self.selectedView.frame)/2 > CGRectGetMaxY(self.boundaryOfDragArea)
-                    || newPositionY-CGRectGetHeight(self.selectedView.frame)/2 < CGRectGetMinY(self.boundaryOfDragArea)) {
-                    break;
+                CGFloat selectedViewHeight = CGRectGetHeight(self.selectedView.frame);
+                if (newPositionY-selectedViewHeight/2 < CGRectGetMinY(self.boundaryOfDragArea)) {
+                    newPositionY = CGRectGetMinY(self.boundaryOfDragArea)+selectedViewHeight/2;
+                }
+                else if (newPositionY+selectedViewHeight/2 > CGRectGetMaxY(self.boundaryOfDragArea)) {
+                    newPositionY = CGRectGetMaxY(self.boundaryOfDragArea)-selectedViewHeight/2;
                 }
                 
                 self.selectedView.center = CGPointMake(self.selectedViewOriginalCenter.x, newPositionY);
