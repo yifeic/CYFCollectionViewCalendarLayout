@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
 @property (nonatomic) BOOL resizing;
 @property (nonatomic) CGFloat resizeMinHeight;
 
+@property (nonatomic) CGRect boundaryOfDragArea;
+
 @property (nonatomic) _ScrollingDirection scrollDirection;
 @property (nonatomic, strong) CADisplayLink *timer;
 @property (nonatomic) CGPoint fingerTranslation;
@@ -104,6 +106,7 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
                 }
             }
             
+            self.boundaryOfDragArea = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate boundaryOfDragAreaInCollectionView:self.collectionView];
             self.selectedViewOriginalCenter = self.selectedView.center;
             self.autoScrollEdgeHeight = [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate autoScrollEdgeHeightInCollectionView:self.collectionView];
         } break;
@@ -119,7 +122,13 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
             }
             else {
                 
-                self.selectedView.center = CGPointMake(self.selectedViewOriginalCenter.x, self.selectedViewOriginalCenter.y+translation.y);
+                CGFloat newPositionY = self.selectedViewOriginalCenter.y+translation.y;
+                if (newPositionY+CGRectGetHeight(self.selectedView.frame)/2 > CGRectGetMaxY(self.boundaryOfDragArea)
+                    || newPositionY-CGRectGetHeight(self.selectedView.frame)/2 < CGRectGetMinY(self.boundaryOfDragArea)) {
+                    break;
+                }
+                
+                self.selectedView.center = CGPointMake(self.selectedViewOriginalCenter.x, newPositionY);
                 [(id<UICollectionViewDelegate_CYFDraggable>)self.collectionView.delegate collectionView:self.collectionView draggableViewDidMove:self.selectedView];
                 
                 //check if edge auto scrolling should begin

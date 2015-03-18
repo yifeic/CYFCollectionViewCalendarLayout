@@ -30,6 +30,8 @@
 - (CGFloat)autoScrollEdgeHeightInCollectionView:(UICollectionView *)collectionView;
 - (CGFloat)autoScrollSpeedInCollectionView:(UICollectionView *)collectionView;
 
+- (CGRect)boundaryOfDragAreaInCollectionView:(UICollectionView *)collectionView;
+
 @optional
 - (CGFloat)collectionView:(UICollectionView *)collectionView resizeAreaHeightOfDraggableView:(UIView *)draggableView;
 
