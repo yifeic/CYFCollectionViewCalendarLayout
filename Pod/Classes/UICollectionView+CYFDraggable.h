@@ -10,6 +10,10 @@
 
 @interface UICollectionView (CYFDraggable)
 
+/// Current draggable view
+- (UIView *)selectedView;
+
+/// Create a draggable view above the cell
 - (void)cyf_startDraggingCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -14,6 +14,7 @@
 @property (nonatomic, weak, readonly) UICollectionView *collectionView;
 @property (nonatomic, readonly) UIGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, readonly) UIGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, strong, readonly) UIView *selectedView;
 
 - (void)selectItemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)deselectItem;

@@ -17,8 +17,8 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
 
 @interface CYFCollectionViewHelper () <UIGestureRecognizerDelegate>
 
-@property (nonatomic ,strong) UIView *selectedView;
-@property (nonatomic ,strong) NSIndexPath *selectedItemIndexPath;
+@property (nonatomic, strong) UIView *selectedView;
+@property (nonatomic, strong) NSIndexPath *selectedItemIndexPath;
 @property (nonatomic) CGPoint selectedViewOriginalCenter;
 @property (nonatomic) CGFloat selectedViewOriginalHeight;
 @property (nonatomic) BOOL decelerating;

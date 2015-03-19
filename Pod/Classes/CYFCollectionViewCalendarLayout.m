@@ -154,9 +154,7 @@
     return self.indexPathToAttributes[indexPath];
 }
 
-- (NSIndexPath *)indexPathOfClosestTimeSlotToPoint:(CGPoint)point {
-    
-    CGFloat y = point.y;
+- (NSIndexPath *)indexPathOfClosestTimeSlotToY:(CGFloat)y {
     y -= self.timeScaleLineInsets.top;
     y = MAX(y, 0);
     

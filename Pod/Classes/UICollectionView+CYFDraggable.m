@@ -26,4 +26,8 @@
     [self.helper selectItemAtIndexPath:indexPath];
 }
 
+- (UIView *)selectedView {
+    return self.helper.selectedView;
+}
+
 @end

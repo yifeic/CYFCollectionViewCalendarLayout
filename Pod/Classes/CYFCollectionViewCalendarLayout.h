@@ -20,7 +20,7 @@
 @interface CYFCollectionViewCalendarLayout : UICollectionViewLayout
 
 // row is index of timeSlot, section is index of timeScale
-- (NSIndexPath *)indexPathOfClosestTimeSlotToPoint:(CGPoint)point;
+- (NSIndexPath *)indexPathOfClosestTimeSlotToY:(CGFloat)y;
 - (CGRect)frameOfTimeSlotAtIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic) UIEdgeInsets timeScaleLineInsets;
